@@ -2,8 +2,6 @@
 
 Backend service for the **Walk a Story** application It manages users, videos, comments, ratings and walks. In addition, it uses Google Cloud Storage as a file store in order to simplify the storage of large files.
 
-[Google Drive document](https://docs.google.com/document/d/15Hz-TB7_XPVMfEEmAMOB3JLq5eJzaWGQb3vYXcHJ3c8)
-
 ## Develop
 
 - Install [requirements.txt](requirements.txt)
@@ -47,22 +45,6 @@ $ docker build -t "registry.hopu.eu/bememories-record/backend:0.5.1" .
 $ docker push registry.hopu.eu/bememories-record/backend:0.5.1
 ```
 
-### Local Docker compose deploy
-
-Docker compose file [here](/docker-compose/docker-compose.yml) to deploy.
-
-```
-$ cd docker-compose
-$ docker-compose up
-```
-
-Testing Ports:
-- backend: 8000
-- telegraf: 9096
-- influx: 8086
-- chronograf: 8888
-- grafana: 3000
-
 ### Online Swarm deploy
 
 [Swarm compose](docker-compose/swarm-compose.yml) file.
@@ -77,13 +59,7 @@ Testing Ports:
 
 ## TODO
 
-- Recover account
-- Test running fails
-- Production deploy with BUCKET_NAME=co-crew
-- Test event database: Telegraf, Influx, Chronograf, Grafana
-    - [Telegraf config file](docker-compose/tick-stack/telegraf.conf)
-    - [docker-compose with TICG](docker-compose/docker-compose.yml)
-- Google Cloud Storage Metadata instead of videos.db
+- None
 
 ## References
 
@@ -92,7 +68,6 @@ Testing Ports:
 - https://www.codementor.io/@sheena/understanding-sqlalchemy-cheat-sheet-du107lawl
 - https://pypi.org/project/Flask-Cors/1.10.3/
 - https://aukera.es/blog/tracking-video-html5-gtm/
-
 
 ## Google Cloud Services
 
@@ -111,4 +86,4 @@ Documentation [here](/google-cloud-function/README.md)
 
 ## Issues
 
-None
+- None
