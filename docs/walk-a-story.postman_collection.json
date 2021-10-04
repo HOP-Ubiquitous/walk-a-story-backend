@@ -1,0 +1,2360 @@
+{
+	"info": {
+		"_postman_id": "4a060ef0-3ea6-44e8-a614-c26ce558c564",
+		"name": "Walk a Story",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('user_id', JSON.parse(responseBody).id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/users/login",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/users/logout",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"falso-usuario\",\n    \"password\": \"usuario\",\n    \"email\": \"falso@mail.eu\",\n    \"name\": \"Falso Usuario\",\n    \"birth_date\": \"1990-03-18T09:00:00\"\n}"
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/users/register",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\": \"d363434e-24c8-46bb-8a07-b5ce43c3df44\",\n\t\"admin\": false\n}"
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/users/admin",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/users/all",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/users/{{user_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/users/delete/{{user_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete",
+								"{{user_id}}"
+							]
+						},
+						"description": "Admin required"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Videos",
+			"item": [
+				{
+					"name": "Get File",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/{{path_file}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"{{path_file}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[DISABLED] Get List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/list_gcs",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"list_gcs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get File by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/id/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"id",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get video_dto by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/video_id/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"video_id",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get File Analysis by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/analysis/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"analysis",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Video Step 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": ""
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/{{place_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"{{place_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[UPDATED] Update Video Step 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Usuario Prueba\",\n    \"mail\": \"mail@hopu.eu\",\n    \"videoId\": \"{{video_id}}\",\n    \"title\": \"Nuevo Titulo\",\n    \"description\": \"Nueva Descripcion\",\n    \"user_id\": \"{{user_id}}\",\n    \"place_id\": \"{{place_id}}\",\n    \"coordinates\": {\n        \"latitude\": \"39.025121\",\n        \"longitude\": \"125.761288\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/register",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"register"
+							]
+						},
+						"description": "Place isn't editable"
+					},
+					"response": []
+				},
+				{
+					"name": "List All Videos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/list",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"list"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "paco",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Videos by Place",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/list/place/{{place_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"list",
+								"place",
+								"{{place_id}}"
+							]
+						},
+						"description": "Public videos"
+					},
+					"response": []
+				},
+				{
+					"name": "List Videos by Places Search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"place_id\":[\n        \"place-id-1\",\n        \"place-id-2\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/list/search",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"list",
+								"search"
+							]
+						},
+						"description": "Public videos"
+					},
+					"response": []
+				},
+				{
+					"name": "List Videos by User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/list/user/{{user_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"list",
+								"user",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Video to private",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/private/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"private",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Video to Revision",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/rev/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"rev",
+								"{{video_id}}"
+							]
+						},
+						"description": "ANALYZING status to HUMAN_REQUIRED"
+					},
+					"response": []
+				},
+				{
+					"name": "Video to public",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/public/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"public",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[UPDATED] Video to Deleted",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/delete/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"delete",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Undelete Video",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/undelete/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"undelete",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[NEW] Permanent Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Add Comment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('comment_id', JSON.parse(responseBody).comment_id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"video_id\": \"{{video_id}}\",\n    \"user_id\": \"{{user_id}}\",\n    \"username\": \"admin\",\n    \"date\": \"2020-02-22T18:00:00.000Z\",\n    \"text\": \"Comentario de prueba2\",\n    \"status\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/comments",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/comments/",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment by video_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/comments/video/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"video",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put comment enabled",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/comments/{{comment_id}}/enable",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"{{comment_id}}",
+								"enable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put comment disabled",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/comments/{{comment_id}}/disable",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"{{comment_id}}",
+								"disable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/comments/{{comment_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"comments",
+								"{{comment_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ratings",
+			"item": [
+				{
+					"name": "[NEW] Get ratings by user_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/user/{{user_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"user",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add rating vote to comment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"comment_id\": \"{{comment_id}}\",\n\t\"user_id\": \"{{user_id}}\",\n\t\"value\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/comment/vote",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"comment",
+								"vote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add rating report to comment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"comment_id\": \"{{comment_id}}\",\n\t\"user_id\": \"{{user_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/comment/report",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"comment",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add rating vote to video",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"video_id\": \"{{video_id}}\",\n\t\"user_id\": \"{{user_id}}\",\n\t\"value\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/video/vote",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"video",
+								"vote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add rating report to video",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"video_id\": \"{{video_id}}\",\n\t\"user_id\": \"{{user_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/video/report",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"video",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[DISABLED] Get votes ratings of video comments by video_id and user_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/votes/user/{{user_id}}/comments/{{comment_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"votes",
+								"user",
+								"{{user_id}}",
+								"comments",
+								"{{comment_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[DISABLED] Get reports ratings of video comments by video_id and user_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/reports/user/{{user_id}}/video/{{video_id}}/comments",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"reports",
+								"user",
+								"{{user_id}}",
+								"video",
+								"{{video_id}}",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get votes ratings of video by video_id and user_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/votes/user/{{user_id}}/video/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"votes",
+								"user",
+								"{{user_id}}",
+								"video",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reports ratings of video by video_id and user_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/reports/user/{{user_id}}/video/{{video_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"reports",
+								"user",
+								"{{user_id}}",
+								"video",
+								"{{video_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete rating DISABLED",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/ratings/{{rating_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ratings",
+								"{{rating_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Caminatas",
+			"item": [
+				{
+					"name": "Add Caminata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('caminata_id', JSON.parse(responseBody).caminata_id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"title\": \"TESTIntergenerational Walk #12\",\n      \"description\": \"Lorem ipsum...\",\n      \"date\": \"2020-03-19T10:10:00.000+0300\",\n      \"image\": \"https://i.pinimg.com/originals/ba/db/3a/bad.jpg\",\n      \"place_id\": \"{{place_id}}\",\n      \"address\": \"Plaza José Virgili, 1, 30562 Ceutí, Murcia\",\n      \"coordinates\": {\n        \"latitude\": 38.0779248,\n        \"longitude\": -1.2747278\n      },\n      \"user\": { \n        \"id\": \"{{user_id}}\"\n      },\n      \"participants\": []\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Caminata by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/{{caminata_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"{{caminata_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Caminata by Id participants",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/{{caminata_id}}?option=participants",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"{{caminata_id}}"
+							],
+							"query": [
+								{
+									"key": "option",
+									"value": "participants"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Caminatas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Caminata by place_id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/place/{{place_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"place",
+								"{{place_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Caminata by participant user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/participant/{{participant_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"participant",
+								"{{participant_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Caminata by register user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/registered/{{user_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"registered",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put participant to caminata",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"{{participant_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/{{caminata_id}}/participant",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"{{caminata_id}}",
+								"participant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete participant from caminata",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"{{user_id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/{{caminata_id}}/participant",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"{{caminata_id}}",
+								"participant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[UPDATED] Update Caminata",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/j",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"title\": \"Intergenerational Walk #7\",\n      \"description\": \"Lorem ipsum...\",\n      \"date\": \"2020-02-22T18:00:00.000Z\",\n      \"image\": \"https://i.pinimg.com/originals/ba/db/3a/bad.jpg\",\n      \"place_id\": \"ceuti_spain\",\n      \"address\": \"Plaza José Virgili, 1, 30562 Ceutí, Murcia\",\n      \"coordinates\": {\n        \"latitude\": 38.0779248,\n        \"longitude\": -1.2747278\n      },\n      \"user\": { \n        \"id\": \"{{user_id}}\"\n      }\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/{{caminata_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"{{caminata_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Caminata",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/caminatas/{{caminata_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"caminatas",
+								"{{caminata_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "[NEW] Places",
+			"item": [
+				{
+					"name": "Add City",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('city_id', JSON.parse(responseBody).id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"name\": \"City\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get City by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities/{{city_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities",
+								"{{city_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get City by Point of Interest Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities?poi_id={{poi_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities"
+							],
+							"query": [
+								{
+									"key": "poi_id",
+									"value": "{{poi_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update City",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/j"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"City V2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities/{{city_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities",
+								"{{city_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete City",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities/{{city_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities",
+								"{{city_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Point of Interest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('poi_id', JSON.parse(responseBody).id);",
+									"pm.environment.set('place_id', JSON.parse(responseBody).id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"POI\",\n    \"latitude\": \"-1\",\n    \"longitude\": \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities/{{city_id}}/pois",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities",
+								"{{city_id}}",
+								"pois"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Point of Interest by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities/pois/{{poi_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities",
+								"pois",
+								"{{poi_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Points of Interest",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities/pois",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities",
+								"pois"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Point of Interest",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/j"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"POI V2\",\n    \"city_id\": \"{{city_id}}\",\n    \"latitude\": \"1\",\n    \"longitude\": \"-1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities/pois/{{poi_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities",
+								"pois",
+								"{{poi_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Point of Interest",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/places/cities/pois/{{poi_id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"places",
+								"cities",
+								"pois",
+								"{{poi_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Google Cloud Function",
+			"item": [
+				{
+					"name": "[Testing] Notification Google Cloud Function",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"notification\":\"Ostrów Wielkopolski (Poland)/rev/Video_Atmosphere_v3_reducido.mp4.json\"}"
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/analyzer/notify",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"analyzer",
+								"notify"
+							]
+						},
+						"description": "Simulation of the notification generated by google cloud function when a new json file is generated with the video analysis values."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "[Testing] Get Location Content",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"latitude\":38.077235,\n\t\"longitude\":  -1.271898\n}"
+						},
+						"url": {
+							"raw": "http://{{url}}:{{port}}/api/v1/location",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"location"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "File Upload",
+			"item": [
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/image",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"image"
+							]
+						},
+						"description": "Response {\"error\" : \"{{error}}\"} || {\"url\": \"{{url}}\"}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Telegraf",
+			"item": [
+				{
+					"name": "Post Report of Video (JSON format)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"measurement-name\": \"video-analytics\",\n\t\"bucket\": \"co-crew\",\n\t\"host\": \"docker-machine-co-crew\",\t\n\t\"video-id\": \"34234234-23421341234-234234-2\",\n\t\"user-id\": \"asdfasdf-324234\",\n\t\"os\": \"ios\",\n    \"secondsOnVideo\": 10,\n    \"interruptions\": 3,\n    \"secondsVideo\": 1,\n    \"delay\": 3000,\n    \"interruptionTime\": 2,\n    \"seekingTimes\": 6,\n    \"timesPlayed\": 1,\n    \"timesPaused\": 4,\n    \"volumeChanged\": 3,\n    \"timesRateChanged\": 0,\n    \"reports\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}:{{telegraf_port}}/telegraf",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"port": "{{telegraf_port}}",
+							"path": [
+								"telegraf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "[NEW] Locations",
+			"item": [
+				{
+					"name": "Add Location",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('location-id', JSON.parse(responseBody).id);",
+									"pm.environment.set('location-type', JSON.parse(responseBody).type);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isActive\": true,\n    \"type\": \"Events\",\n    \"subtype\": \"Concert\",\n    \"title\": \"location-title-test\",\n    \"description\": \"description\",\n    \"coordinates\": {\n        \"latitude\": 38.0779248,\n        \"longitude\": -1.2747278\n    },\n    \"workers\": [\n        {\n            \"name\": \"workerName\",\n            \"job\": \"workerJob\",\n            \"photo\": \"photoUrl\"\n        }\n    ],\n    \"ownerUserId\": \"6a83ea4a-39dc-4546-a1b9-c7464b11bfb2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Locations by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations/{{location-id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								"{{location-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Locations by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations?type={{location-type}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "{{location-type}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Locations by Owner User Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations?ownerUserId={{owner-user-id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							],
+							"query": [
+								{
+									"key": "ownerUserId",
+									"value": "{{owner-user-id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[NEW] Get Locations by params",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations?type=Event&subtype=Concert&ownerUserId={{owner-user-id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Event"
+								},
+								{
+									"key": "subtype",
+									"value": "Concert"
+								},
+								{
+									"key": "ownerUserId",
+									"value": "{{owner-user-id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Location Active",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations/{{location-id}}/active",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								"{{location-id}}",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Location Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations/{{location-id}}/inactive",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								"{{location-id}}",
+								"inactive"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Location",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isActive\": true,\n    \"type\": \"no\",\n    \"subtype\": \"Concert\",\n    \"title\": \"NUEVO TITULO\",\n    \"description\": \"description\",\n    \"coordinates\": {\n        \"latitude\": 38.0779248,\n        \"longitude\": -1.2747278\n    },\n    \"workers\": [\n        {\n            \"name\": \"workerName\",\n            \"job\": \"workerJob\",\n            \"photo\": \"photoUrl\"\n        },\n                {\n            \"name\": \"workerName2\",\n            \"job\": \"workerJob2\",\n            \"photo\": \"photoUrl2\"\n        }\n    ],\n    \"ownerUserId\": \"user-id-test\",\n    \"mainVideoId\": \"main-video-id\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations/{{location-id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								"{{location-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Location",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{co-crew-endpoint}}/api/v1/locations/{{location-id}}",
+							"host": [
+								"{{co-crew-endpoint}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"locations",
+								"{{location-id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Version",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{co-crew-endpoint}}/version",
+					"host": [
+						"{{co-crew-endpoint}}"
+					],
+					"path": [
+						"version"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

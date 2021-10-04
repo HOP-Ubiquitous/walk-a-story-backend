@@ -1,0 +1,46 @@
+{
+  "annotation_results": [ {
+    "input_uri": "/bememories/ruinas/rev/sample (1).mp4",
+    "segment": {
+      "start_time_offset": {
+
+      },
+      "end_time_offset": {
+        "seconds": 5,
+        "nanos": 240000000
+      }
+    },
+    "explicit_annotation": {
+      "frames": [ {
+        "time_offset": {
+          "nanos": 910483000
+        },
+        "pornography_likelihood": "UNLIKELY"
+      }, {
+        "time_offset": {
+          "seconds": 2,
+          "nanos": 96442000
+        },
+        "pornography_likelihood": "UNLIKELY"
+      }, {
+        "time_offset": {
+          "seconds": 3,
+          "nanos": 42803000
+        },
+        "pornography_likelihood": "VERY_UNLIKELY"
+      }, {
+        "time_offset": {
+          "seconds": 4,
+          "nanos": 69367000
+        },
+        "pornography_likelihood": "VERY_UNLIKELY"
+      }, {
+        "time_offset": {
+          "seconds": 4,
+          "nanos": 904936000
+        },
+        "pornography_likelihood": "UNLIKELY"
+      } ]
+    }
+  } ]
+}

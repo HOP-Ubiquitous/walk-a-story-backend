@@ -1,0 +1,33 @@
+version: "3.3"
+
+services:
+  walk-a-story-backend:
+    image: registry.hopu.eu/bememories-record/backend:0.5.1 # private
+    volumes:
+      - "walk-a-story-backend-db-pre-v3:/src/db"
+    secrets:
+      - source: credential-google-cloud-json
+        target: /src/source/google-cloud-json.json # it must be the same
+    environment:
+    - GOOGLE_APPLICATION_CREDENTIALS=/src/source/google-cloud-json.json # it must be the same
+    - REST_URL=0.0.0.0
+    - REST_PORT=8000
+    - BUCKET_NAME=co-crew # co-crew (production walk a story)
+    - DEBUG_FRONTEND=False #True
+    - SECURE_API=True # True default, False
+    - BASE_PATH=pre-walk-a-story-directory/
+    networks:
+      - walk-a-story-network
+
+volumes:
+  walk-a-story-backend-db-pre-v3:
+    external: true
+
+secrets:
+  credential-google-cloud-json:
+    external: true
+
+networks:
+  walk-a-story-network:
+    external:
+      name: walk-a-story-network

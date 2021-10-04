@@ -1,0 +1,170 @@
+{
+  "annotation_results": [ {
+    "input_uri": "/bememories/ruinas/rev/analyzer_sample.mp4",
+    "segment": {
+      "start_time_offset": {
+
+      },
+      "end_time_offset": {
+        "seconds": 5,
+        "nanos": 240000000
+      }
+    },
+    "segment_label_annotations": [ {
+      "entity": {
+        "entity_id": "/m/05h0n",
+        "description": "nature",
+        "language_code": "en-US"
+      },
+      "segments": [ {
+        "segment": {
+          "start_time_offset": {
+
+          },
+          "end_time_offset": {
+            "seconds": 5,
+            "nanos": 240000000
+          }
+        },
+        "confidence": 0.52118844
+      } ]
+    }, {
+      "entity": {
+        "entity_id": "/m/08t9c_",
+        "description": "grass",
+        "language_code": "en-US"
+      },
+      "category_entities": [ {
+        "entity_id": "/m/05s2s",
+        "description": "plant",
+        "language_code": "en-US"
+      } ],
+      "segments": [ {
+        "segment": {
+          "start_time_offset": {
+
+          },
+          "end_time_offset": {
+            "seconds": 5,
+            "nanos": 240000000
+          }
+        },
+        "confidence": 0.5196256
+      } ]
+    }, {
+      "entity": {
+        "entity_id": "/m/0jbk",
+        "description": "animal",
+        "language_code": "en-US"
+      },
+      "segments": [ {
+        "segment": {
+          "start_time_offset": {
+
+          },
+          "end_time_offset": {
+            "seconds": 5,
+            "nanos": 240000000
+          }
+        },
+        "confidence": 0.92568761
+      } ]
+    }, {
+      "entity": {
+        "entity_id": "/m/0hcr",
+        "description": "animation",
+        "language_code": "en-US"
+      },
+      "segments": [ {
+        "segment": {
+          "start_time_offset": {
+
+          },
+          "end_time_offset": {
+            "seconds": 5,
+            "nanos": 240000000
+          }
+        },
+        "confidence": 0.61960304
+      } ]
+    } ],
+    "shot_label_annotations": [ {
+      "entity": {
+        "entity_id": "/m/05h0n",
+        "description": "nature",
+        "language_code": "en-US"
+      },
+      "segments": [ {
+        "segment": {
+          "start_time_offset": {
+
+          },
+          "end_time_offset": {
+            "seconds": 5,
+            "nanos": 240000000
+          }
+        },
+        "confidence": 0.52118844
+      } ]
+    }, {
+      "entity": {
+        "entity_id": "/m/08t9c_",
+        "description": "grass",
+        "language_code": "en-US"
+      },
+      "category_entities": [ {
+        "entity_id": "/m/05s2s",
+        "description": "plant",
+        "language_code": "en-US"
+      } ],
+      "segments": [ {
+        "segment": {
+          "start_time_offset": {
+
+          },
+          "end_time_offset": {
+            "seconds": 5,
+            "nanos": 240000000
+          }
+        },
+        "confidence": 0.5196256
+      } ]
+    }, {
+      "entity": {
+        "entity_id": "/m/0jbk",
+        "description": "animal",
+        "language_code": "en-US"
+      },
+      "segments": [ {
+        "segment": {
+          "start_time_offset": {
+
+          },
+          "end_time_offset": {
+            "seconds": 5,
+            "nanos": 240000000
+          }
+        },
+        "confidence": 0.92568761
+      } ]
+    }, {
+      "entity": {
+        "entity_id": "/m/0hcr",
+        "description": "animation",
+        "language_code": "en-US"
+      },
+      "segments": [ {
+        "segment": {
+          "start_time_offset": {
+
+          },
+          "end_time_offset": {
+            "seconds": 5,
+            "nanos": 240000000
+          }
+        },
+        "confidence": 0.61960304
+      } ]
+    } ]
+  } ]
+}
